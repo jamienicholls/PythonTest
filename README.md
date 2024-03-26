@@ -1,18 +1,25 @@
 # PythonTest
 
-## Install from private nexus repo
+## Setup Nexus as a Providor
 Create the following file `~/.pypirc`
-
 ```
 [distutils]
 index-servers =
     nexus
 
-[nexus]
-repository: https://your-nexus-repo-url/repository/pypi-hosted/
-username: your-nexus-username
-password: your-nexus-password
+[nexus] 
+repository: https://<nexus-package-repo>/repository/pypi-all/
+username: <username>
+password: <password>
+```
+
+
+Create the following file at `~/.pip/pip.conf`
+``` 
+[global]
+index = https://<nexus-package-repo>/repository/pypi-all/pypi
+index-url = https://<nexus-package-repo>/repository/pypi-all/simple
 ```
 
 Run the following to install packages from nexus
-`pip install --extra-index-url https://your-nexus-repo-url/repository/pypi-hosted/ -r requirements.txt`
+`pip3 install -r requirements.txt`
